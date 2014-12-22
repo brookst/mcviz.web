@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block body %}
+<header>
+<h1>MCWebViz</h1>
+For help on options, please see <a href="https://github.com/mcviz/mcviz/wiki">the MCViz wiki</a>. The MCViz program is available to download from <a href="http://mcviz.net">MCViz.net</a>.
+</header>
+<section id="controls">
+<form id="controller" method="post" action="/render{{ "/" + file_name if file_name }}#render" enctype=multipart/form-data><div>
+  <div id="layout" class="options">
+    <h3>Layout</h3>
+    {% for layout in tools["layout"] %}
+    <span title="{{ tools["layout"][layout].__doc__ }}">
+    <input type="radio" name="--layout" value="{{ layout }}"{% if loop.first %} checked{% endif %}>{{ layout }}</input><br>
+    </span>
+    {% endfor %}
+  </div>
+  <div id="transforms" class="options">
+    <h3>Transforms</h3>
+    {% for transform in tools["transform"] %}
+    <span title="{{ tools["transform"][transform].__doc__ }}">
+    <input type="checkbox" name="--transform" value="{{transform}}">{{transform}}</input><br>
+    </span>
+    {% endfor %}
+  </div>
+  <div id="styles" class="options">
+    <h3>Styles</h3>
+    {% for style in tools["style"] %}
+    <span title="{{ tools["style"][style].__doc__ }}">
+    <input type="checkbox" name="--style" value="{{style}}">{{style}}</input><br>
+    </span>
+    {% endfor %}
+  </div>
+  <div id="annotations" class="options">
+    <h3>Annotations</h3>
+    {% for annotation in tools["annotation"] %}
+    <span title="{{ tools["annotation"][annotation].__doc__ }}">
+    <input type="checkbox" name="--annotation" value="{{annotation}}">{{annotation}}</input><br>
+    </span>
+    {% endfor %}
+  </div>
+</div>
+<div id="buttons">
+{% block formextras %}
+  <input type=file name=file>
+  <input type="submit" value="Render">
+{% endblock %}
+</div>
+</form>
+</section>
+{% block content %}{% endblock %}
+<footer>
+MCViz &copy; 2011 by Johannes Ebke, Peter Waller &amp; Tim Brooks<br>
+Licensed under GNU AGPL version 3
+</footer>
+{% endblock %}

@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto&subset=latin,greek' type='text/css'>
+<style>
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #202020;
+    margin: 0;
+    padding: 0;
+    background: #DDDDDD;
+}
+header {
+    background: #FFFFFF;
+    padding: 5px;
+    margin: 5px;
+    text-align: center;
+}
+section {
+    background: #FFFFFF;
+    padding: 1em;
+    margin: 5px;
+}
+footer {
+    background: #FFFFFF;
+    padding: 1em;
+    margin: 5px;
+    text-align: center;
+}
+input {
+    border: 0;
+    color: #202020;
+    background: none;
+}
+h3 {
+    margin-top: 0;
+}
+div.options {
+    display: inline-block;
+    vertical-align: top;
+    min-width: 200px;
+    width: 24.5%;
+}
+section.render {
+    text-align: center;
+}
+img#mcviz {
+    background-image: url("http://s9.postimg.org/eikge0gu3/spinner_128_anti_alias.gif");
+    background-size: 64px 64px;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-width: 64px;
+    min-height: 64px;
+}
+@media screen and (device-height: 2160px) {
+    img#mcviz {
+        max-height: 1924px;
+    }
+}
+@media screen and (device-height: 1600px) {
+    img#mcviz {
+        max-height: 1364px;
+    }
+}
+@media screen and (device-height: 1200px) {
+    img#mcviz {
+        max-height: 964px;
+    }
+}
+@media screen and (device-height: 1080px) {
+    img#mcviz {
+        max-height: 844px;
+    }
+}
+@media screen and (device-height: 1024px) {
+    img#mcviz {
+        max-height: 788px;
+    }
+}
+</style>
+{% block title %}<title>MCWebViz</title>{% endblock %}
+{% block head %}{% endblock %}
+</head>
+<body>
+<a href="https://github.com/mcviz/"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+{% block body %}{% endblock %}
+</body>
+</html>
