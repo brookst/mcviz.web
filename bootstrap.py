@@ -1830,6 +1830,8 @@ def after_install(options, home_dir):
         if not os.path.exists(folder):
             os.makedirs(folder)
 
+    os.system("git submodule update --init mcviz.standalone")
+
     ret = subprocess.call([join(home_dir, 'bin', 'pip'), 'install', '-e',
                            'mcviz.standalone'])
     if ret:
