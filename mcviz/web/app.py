@@ -16,15 +16,15 @@ APP = Flask(__name__)
 APP.logger.addHandler(FILE_HANDLER)
 APP.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 APP.config['RENDER_FOLDER'] = RENDER_FOLDER
-from mcviz.logger import log
+from mcviz.logger import LOG
 for handler in APP.logger.handlers:
-    log.addHandler(handler)
+    LOG.addHandler(handler)
 
 from mcviz.options import parse_options
 from mcviz.tools.tools import tool_classes
 from mcviz.graph import EventGraph
 from mcviz.workspace import GraphWorkspace
-from url_hash import url_hash
+from mcviz.web.url_hash import url_hash
 
 def get_resource_path(folder, file_name):
     """Return absolute path to file in a resource folder"""
