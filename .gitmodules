@@ -1,0 +1,3 @@
+[submodule "mcviz.standalone"]
+	path = mcviz.standalone
+	url = https://github.com/brookst/mcviz.git

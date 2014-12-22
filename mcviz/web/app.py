@@ -8,11 +8,11 @@ from logging.handlers import RotatingFileHandler
 from flask import Flask, abort, request, send_from_directory, render_template
 from werkzeug import secure_filename
 
-UPLOAD_FOLDER = os.path.dirname('uploads/')
-RENDER_FOLDER = os.path.dirname('renders/')
+UPLOAD_FOLDER = os.path.join(os.getcwd(), 'uploads/')
+RENDER_FOLDER = os.path.join(os.getcwd(), 'renders/')
 FILE_HANDLER = RotatingFileHandler('log/flask.log')
 
-APP = Flask(__name__)
+APP = Flask(__name__, template_folder=os.path.join(os.getcwd(), 'templates/'))
 APP.logger.addHandler(FILE_HANDLER)
 APP.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 APP.config['RENDER_FOLDER'] = RENDER_FOLDER
@@ -98,16 +98,16 @@ def get_image(file_name):
     workspace.run()
 
     APP.logger.info("Rendering %s done", name)
-    return send_from_directory("renders/", file_name)
+    return send_from_directory(APP.config['RENDER_FOLDER'], file_name)
 
 if __name__ == "__main__":
-    from logging import Formatter
-    TEMPLATE = "[%(asctime)s|%(levelname)-7s] %(message)s"
-
     APP.debug = True
-    APP.logger.setLevel(logging.DEBUG)
-    for handler in APP.logger.handlers:
-        handler.setLevel(logging.DEBUG)
-        handler.setFormatter(Formatter(TEMPLATE))
-
     APP.run(host='0')
+
+from logging import Formatter
+TEMPLATE = "[%(asctime)s|%(levelname)-7s] %(message)s"
+
+APP.logger.setLevel(logging.DEBUG)
+for handler in APP.logger.handlers:
+    handler.setLevel(logging.DEBUG)
+    handler.setFormatter(Formatter(TEMPLATE))
