@@ -3,8 +3,7 @@
 
 import virtualenv, textwrap
 OUTPUT = virtualenv.create_bootstrap_script(textwrap.dedent("""
-import os, subprocess, textwrap
-from os.path import join
+import os, subprocess
 def after_install(options, home_dir):
     dirs = ['log', 'uploads', 'renders']
     for folder in dirs:
@@ -23,6 +22,11 @@ def after_install(options, home_dir):
     if ret:
         print("Error installing mcviz.web")
         return
+
+    try:
+        os.symlink("env/bin/mcwebviz", "dev_serve")
+    except OSError:
+        pass
 
     print("")
     print("Check the user running apache can access these folders")
