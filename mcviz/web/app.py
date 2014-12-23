@@ -100,10 +100,6 @@ def get_image(file_name):
     APP.logger.info("Rendering %s done", name)
     return send_from_directory(APP.config['RENDER_FOLDER'], file_name)
 
-if __name__ == "__main__":
-    APP.debug = True
-    APP.run(host='0')
-
 from logging import Formatter
 TEMPLATE = "[%(asctime)s|%(levelname)-7s] %(message)s"
 
@@ -111,3 +107,11 @@ APP.logger.setLevel(logging.DEBUG)
 for handler in APP.logger.handlers:
     handler.setLevel(logging.DEBUG)
     handler.setFormatter(Formatter(TEMPLATE))
+
+def serve():
+    """Standalone development server on port 5000"""
+    APP.debug = True
+    APP.run(host='0')
+
+if __name__ == "__main__":
+    serve()
